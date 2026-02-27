@@ -129,7 +129,25 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="Статистика">
-                    <Grid/>
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <TreeView x:Name="StatsTreeView" Grid.Column="0">
+                            <TreeViewItem Header="Здоровье" IsExpanded="True">
+                                <TreeViewItem Header="Спорт"/>
+                            </TreeViewItem>
+                        </TreeView>
+                        <ListView x:Name="StatsListView" Grid.Column="1">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="День" DisplayMemberBinding="{Binding Day}" Width="120"/>
+                                    <GridViewColumn Header="Сделано" DisplayMemberBinding="{Binding Completed}" Width="100"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
                 </TabItem>
             </TabControl>
 
