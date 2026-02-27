@@ -1,12 +1,45 @@
 ﻿<Window x:Class="HabitTracker.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HabitTracker"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Управление привычками" Height="700" Width="1000" Background="White">
+    <DockPanel>
 
-    </Grid>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Сохранить" Click="MenuSave_Click"/>
+                <MenuItem Header="Загрузить" Click="MenuLoad_Click"/>
+                <Separator/>
+                <MenuItem Header="Выход" Click="MenuExit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Правка">
+                <MenuItem Header="Копировать" Command="Copy"/>
+                <MenuItem Header="Вставить" Command="Paste"/>
+            </MenuItem>
+            <MenuItem Header="Вид">
+                <MenuItem Header="Светлая тема" Click="LightTheme_Click"/>
+                <MenuItem Header="Темная тема" Click="DarkTheme_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button Content="Сохранить" Click="MenuSave_Click"/>
+                <Button Content="Загрузить" Click="MenuLoad_Click"/>
+                <Separator/>
+                <ToggleButton x:Name="EditModeToggle" Content="Режим редактирования" Click="EditModeToggle_Click"/>
+            </ToolBar>
+        </ToolBarTray>
+
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock x:Name="StatusText" Text="Готово"/>
+            </StatusBarItem>
+        </StatusBar>
+
+        <!-- Пока просто заглушка, потом заменим на Grid+TabControl -->
+        <Grid>
+            <TextBlock Text="Каркас" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+
+    </DockPanel>
 </Window>
