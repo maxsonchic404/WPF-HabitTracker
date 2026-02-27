@@ -45,7 +45,50 @@
 
             <TabControl x:Name="MainTabControl" SelectionChanged="MainTabControl_SelectionChanged" Grid.Column="0">
                 <TabItem Header="Личные данные">
-                    <Grid/>
+                    <ScrollViewer>
+                        <WrapPanel Orientation="Horizontal" Margin="10">
+                            <GroupBox Header="Основная информация" Width="300" Margin="5">
+                                <StackPanel Margin="5">
+                                    <Label Content="Имя:"/>
+                                    <TextBox x:Name="FirstNameTextBox" Margin="0,0,0,5"/>
+                                    <Label Content="Фамилия:"/>
+                                    <TextBox x:Name="LastNameTextBox" Margin="0,0,0,5"/>
+                                    <Label Content="Дата рождения:"/>
+                                    <DatePicker x:Name="BirthDatePicker" Margin="0,0,0,5"/>
+                                    <Label Content="Аватар:"/>
+                                    <Border BorderBrush="Gray" BorderThickness="1" Width="100" Height="100" HorizontalAlignment="Left" Margin="0,0,0,5">
+                                        <Image x:Name="AvatarImage" Stretch="UniformToFill"/>
+                                    </Border>
+                                    <Button Content="Загрузить фото" Click="LoadAvatar_Click" Width="120" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="Дополнительные данные" Width="300" Margin="5">
+                                <StackPanel Margin="5">
+                                    <Label Content="Пароль:"/>
+                                    <PasswordBox x:Name="UserPasswordBox" Margin="0,0,0,5"/>
+                                    <Label Content="Образование:"/>
+                                    <ComboBox x:Name="EducationComboBox" Margin="0,0,0,5">
+                                        <ComboBoxItem Content="Среднее"/>
+                                        <ComboBoxItem Content="Высшее"/>
+                                    </ComboBox>
+                                    <Label Content="Хобби:"/>
+                                    <ListBox x:Name="HobbiesListBox" SelectionMode="Multiple" Height="90" Margin="0,0,0,5">
+                                        <ListBoxItem Content="Спорт"/>
+                                        <ListBoxItem Content="Программирование"/>
+                                    </ListBox>
+                                </StackPanel>
+                            </GroupBox>
+                            <GroupBox Header="Настройки отображения" Width="300" Margin="5">
+                                <StackPanel Margin="5">
+                                    <CheckBox x:Name="NotifyCheckBox" Content="Уведомления" Margin="0,0,0,5"/>
+                                    <Label Content="Активность:" FontWeight="Bold"/>
+                                    <RadioButton x:Name="MediumActivityRb" Content="Средний" GroupName="Activity" IsChecked="True"/>
+                                    <Button Content="Сохранить" Click="SaveProfile_Click" Margin="0,10,0,5" Background="LightGreen"/>
+                                    <Button Content="Сброс" Click="ResetProfile_Click" Background="LightCoral"/>
+                                </StackPanel>
+                            </GroupBox>
+                        </WrapPanel>
+                    </ScrollViewer>
                 </TabItem>
                 <TabItem Header="Привычки">
                     <Grid/>
