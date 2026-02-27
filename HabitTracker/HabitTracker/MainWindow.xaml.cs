@@ -7,6 +7,9 @@ using System.Collections.ObjectModel;
 
 namespace HabitTracker
 {
+    /// <summary>Статистика.</summary>
+    public class DailyStat { public string Day { get; set; } public int Completed { get; set; } }
+    
     /// <summary>Привычка.</summary>
     public class Habit { public string Name { get; set; } public bool IsCompleted { get; set; } }
 
@@ -24,6 +27,14 @@ namespace HabitTracker
         public MainWindow()
         {
             InitializeComponent();
+
+            HabitsDataGrid.ItemsSource = HabitsList;
+            HabitCalendar.SelectedDate = DateTime.Now;
+
+            StatsList.Add(new DailyStat { Day = "Понедельник", Completed = 3 });
+            StatsList.Add(new DailyStat { Day = "Вторник", Completed = 5 });
+
+            StatsListView.ItemsSource = StatsList;
         }
 
         /// <summary>
@@ -129,5 +140,6 @@ namespace HabitTracker
         /// <summary>Кнопка повтора.</summary>
         private void RepeatButton_Click(object sender, RoutedEventArgs e) { ProductivitySlider.Value += 5; }
 
+        public ObservableCollection<DailyStat> StatsList { get; set; } = new ObservableCollection<DailyStat>();
     }
 }
