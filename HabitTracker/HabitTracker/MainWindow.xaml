@@ -36,10 +36,30 @@
             </StatusBarItem>
         </StatusBar>
 
-        <!-- Пока просто заглушка, потом заменим на Grid+TabControl -->
+
         <Grid>
-            <TextBlock Text="Каркас" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="0" x:Name="ExtraPanelColumn"/>
+            </Grid.ColumnDefinitions>
+
+            <TabControl x:Name="MainTabControl" SelectionChanged="MainTabControl_SelectionChanged" Grid.Column="0">
+                <TabItem Header="Личные данные">
+                    <Grid/>
+                </TabItem>
+                <TabItem Header="Привычки">
+                    <Grid/>
+                </TabItem>
+                <TabItem Header="Статистика">
+                    <Grid/>
+                </TabItem>
+            </TabControl>
+
+            <Border x:Name="ExtraPanel" Grid.Column="1" Background="WhiteSmoke" Visibility="Collapsed" BorderBrush="Gray" BorderThickness="1,0,0,0">
+                <TextBlock Text="Дополнительная панель" Margin="10"/>
+            </Border>
         </Grid>
+
 
     </DockPanel>
 </Window>

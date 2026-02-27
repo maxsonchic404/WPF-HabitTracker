@@ -57,12 +57,27 @@ namespace HabitTracker
             Background = Brushes.LightGray;
         }
 
-        /// <summary>
-        /// ToggleButton "Режим редактирования" (пока заглушка).
-        /// </summary>
+        /// <summary>Смена вкладок.</summary>
+        private void MainTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.Source is TabControl && StatusText != null)
+                if (MainTabControl.SelectedItem is TabItem tab)
+                    StatusText.Text = $"Текущий раздел: {tab.Header}";
+        }
+
+        /// <summary>Показ доп панели.</summary>
         private void EditModeToggle_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Режим редактирования (панель появится позже).");
+            if (EditModeToggle.IsChecked == true)
+            {
+                ExtraPanel.Visibility = Visibility.Visible;
+                ExtraPanelColumn.Width = new GridLength(220);
+            }
+            else
+            {
+                ExtraPanel.Visibility = Visibility.Collapsed;
+                ExtraPanelColumn.Width = new GridLength(0);
+            }
         }
     }
 }
