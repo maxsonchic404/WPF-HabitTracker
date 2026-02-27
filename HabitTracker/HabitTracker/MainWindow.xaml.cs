@@ -3,9 +3,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Collections.ObjectModel;
 
 namespace HabitTracker
 {
+    /// <summary>Привычка.</summary>
+    public class Habit { public string Name { get; set; } public bool IsCompleted { get; set; } }
+
     /// <summary>Данные пользователя.</summary>
     public class UserProfile { public string FirstName { get; set; } public string LastName { get; set; } }
 
@@ -103,6 +107,27 @@ namespace HabitTracker
 
         /// <summary>Сброс.</summary>
         private void ResetProfile_Click(object sender, RoutedEventArgs e) { FirstNameTextBox.Clear(); }
+
+        public ObservableCollection<Habit> HabitsList { get; set; } = new ObservableCollection<Habit>();
+
+        // В конструкторе MainWindow(), сразу после InitializeComponent() добавьте:
+        // HabitsDataGrid.ItemsSource = HabitsList; HabitCalendar.SelectedDate = DateTime.Now;
+
+        /// <summary>Добавить привычку.</summary>
+        private void AddHabit_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(NewHabitTextBox.Text))
+                HabitsList.Add(new Habit { Name = NewHabitTextBox.Text });
+        }
+
+        /// <summary>Слайдер.</summary>
+        private void Sliders_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (DayProgressBar != null) DayProgressBar.Value = ProductivitySlider.Value;
+        }
+
+        /// <summary>Кнопка повтора.</summary>
+        private void RepeatButton_Click(object sender, RoutedEventArgs e) { ProductivitySlider.Value += 5; }
 
     }
 }
